@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Existing Head Content -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabin Sah - Professional Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Lottie Files Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
+
+    <!-- FontAwesome for Social Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- FontAwesome CSS (if needed) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <!-- Stylesheet -->
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #fafafa;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Particles.js Styles */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Behind other header content */
+        }
+
+        /* Modern Landing Page with Lottie Animation */
+        header {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: #fff;
+            padding: 100px 20px;
+            position: relative; /* To contain absolute children */
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide overflow from particles */
+        }
+
+        /* Ensure Header Content is Above Particles */
+        header img,
+        header h1,
+        header p,
+        .footer-icons1 {
+            position: relative;
+            z-index: 2; /* Above particles */
+        }
+
+        /* Profile Image in Header */
+        header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            
+            border: 5px solid #fff;
+            margin-top: 90px;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            z-index: 2;
+        }
+
+        /* Social Media Icons in the Top Right Corner */
+
+        .top-right-icons a {
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .top-right-icons a:hover {
+            color: #4a4a4a;
+            transform: translateY(-50px);
+        }
+
+        .footer-icons1 {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex; /* Enable Flexbox for icons */
+            gap: 15px; /* Space between icons */
+            z-index: 2; /* Above particles */
+        }
+
+        .footer-icons1 a {
+            color: #fff; /* White icon color */
+            font-size: 1.5rem; /* Icon size */
+            transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        }
+
+        .footer-icons1 a:hover {
+            color: #5a5a5b; /* Change color on hover */
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        /* Lottie Animation Container (If Used) */
+        .lottie-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.6;
+        }
+
+        /* Profile Section */
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            margin-top: -50px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-right: 30px;
+        }
+
+        .profile-info {
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .profile-info h2 {
+            font-size: 2.5rem;
+            color: #4e54c8;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Section Design for About, Experience, and Skills */
+        .section {
+            padding: 70px 20px;
+            background-color: #fafafa;
+        }
+
+        .section:nth-child(even) {
+            background-color: #f1f3f4;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #4e54c8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Timeline for Experience and Education */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 3px;
+            height: 100%;
+            background: #ddd;
+        }
+
+        .timeline .entry {
+            position: relative;
+            padding-left: 100px;
+            padding-bottom: 40px;
+        }
+
+        .timeline .entry h3 {
+            font-size: 1.6rem;
+            color: #4e54c8;
+            margin-bottom: 10px;
+        }
+
+        .timeline .entry p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .timeline .entry span {
+            position: absolute;
+            top: 0;
+            left: 30px;
+            background-color: #ff6b6b;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        .section {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .skill-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            flex: 30%;
+            max-width: 300px;
+        }
+
+        .skill-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        /* Contact */
+        .c_section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .footer-content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Ensure responsiveness */
+        }
+        .footer-icons 
+            {
+            display: flex; /* Enable Flexbox for icons */
+            gap: 15px; /* Space between icons */
+        }
+
+        .footer-icons a {
+            color: #fff; /* White icon color */
+            font-size: 1.5rem; /* Icon size */
+            transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        }
+
+        .footer-icons a:hover {
+            color: #4e54c8; /* Change color on hover */
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+
+        /* Responsive Design for Footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                padding: 0 20px; /* Horizontal padding on small screens */
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-icons {
+                gap: 10px; /* Reduce space between icons */
+            }
+
+            .footer-icons a {
+                font-size: 1.3rem; /* Slightly smaller icons on small screens */
+            }
+        }
+
+        .contact-section {
+            display: flex; /* Enable flexbox for the section */
+            justify-content: flex-end; /* Align content to the right */
+            padding: 20px; /* Add padding to the section */
+        }
+
+        .contact-card {
+            display: flex; /* Enable flexbox for the card */
+            background-color: #f9f9f9; /* Card background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            overflow: hidden; /* Hide overflow */
+            max-width: 900px; /* Maximum width for the card */
+            width: 100%; 
+            justify-content: center; /* Center content */
+            flex-wrap: wrap; /* Wrap on smaller screens */
+        }
+
+        .contact-form {
+            padding: 20px; /* Padding for the form */
+            flex: 1; /* Allow the form to take available space */
+            min-width: 300px; /* Minimum width */
+        }
+
+        .contact-form h2 {
+            margin-bottom: 20px; /* Spacing below the heading */
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Spacing between form fields */
+        }
+
+        label {
+            display: block; /* Label on its own line */
+            margin-bottom: 5px; /* Spacing below label */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%; /* Full width input fields */
+            padding: 10px; /* Padding inside fields */
+            border: 1px solid #ccc; /* Border for fields */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        button {
+            background-color: #4CAF50; /* Green background for the button */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding for the button */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        button:hover {
+            background-color: #408b43; /* Darker green on hover */
+        }
+
+        .contact-image {
+            flex: 1; /* Allow the image section to take available space */
+            display: flex; /* Enable flexbox for image */
+            justify-content: center; /* Center image horizontally */
+            align-items: center; /* Center image vertically */
+            min-width: 300px; /* Minimum width */
+        }
+
+        .contact-image img {
+            max-width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .center-text1{
+         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with Particles.js and Profile Picture -->
+    <header>
+        <!-- Particles.js Container -->
+        <div id="particles-js"></div>
+        
+        <!-- Social Media Icons -->
+        <div class="footer-icons1">
+            <a href="https://www.linkedin.com/in/nabin-sah-9b6382166" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/sahnabin937%40gmail.com?compose=new"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/sahnabin937" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/sahnabin937" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/+917479705013" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFQVBwtQwOqEg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1729015475226?e=1734566400&v=beta&t=_W9nKFJ_KKOJzbMLAMir3JEKjMnNRMQWNKfU76OxyBw" alt="Nabin Sah">
+        <h1>Nabin Sah</h1>
+        <p>Supply Chain & Logistics Expert</p>
+    </header>
+
+    <!-- About Section -->
+    <br>
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p class="center-text1">
+            Supply Chain & Logistics professional with extensive experience in managing hub operations, compliance, and team leadership.<br> Skilled in last-mile delivery, vendor management, and cost reduction.
+            Experienced in B2B and B2C client handling,<br> improving operational efficiency, and meeting high-performance targets.
+        </p>
+    </section><br><br>
+
+    <!-- Experience Section with Timeline -->
+    <section id="experience" class="section">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="entry">
+                <span></span>
+                <h3>DTDC Express Limited - Branch Manager (June 2024 - Present)</h3>
+                <ul>
+                    <li>Oversaw end-to-end branch operations Last Mile.</li>
+                    <li>Managed daily inbound and outbound operations.</li>
+                    <li>Handled forward pickups, reverse pickups, RTO, and last-mile delivery.</li>
+                    <li>Recruited and developed talent for operations, leading a team of 46 members.</li>
+                    <li>Supervised 34 delivery bikers for ODA routes.</li>
+                    <li>Collaborated on new initiatives with cross-functional teams to achieve organizational goals.</li>
+                    <li>Developed processes, SOPs, and workflows across operating hubs.</li>
+                    <li>Ensured compliance with Sales Tax Detained Vehicle legal procedures (Mov1 to Mov10) and handled all related documentation.</li>
+                    <li>Handled channel partner and bond management.</li>
+                </ul>
+                <br>
+                <ul>
+                    <li>Increased branch SLA performance by 8% in FY 24-25.</li>
+                    <li>Improved vehicle release performance by 4% in the last month.</li>
+                    <li>Achieved 90% success in B2C seller level pickups.</li>
+                    <li>Met 100% of premium pickup targets.</li>
+                    <li>Attained 88% same-day delivery success and 94% for FAD deliveries.</li>
+                    <li>Exceeded EDD targets with over 96% compliance.</li>
+                    <li>Achieved 98% success in reverse pickups.</li>
+                    <li>Maintained an 88-92% ratio for ODA deliveries.</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <span></span>
+                <h3>Xpressbees - Senior Executive (March 2023 - May 2024)</h3>
+                <p><strong>Experience</strong></p>
+                <ul>
+                    <li>Managed end-to-end operations and daily mid-mile operations - Compliance.</li>
+                    <li>Addressed performance gaps and implemented solutions to meet targets.</li>
+                    <li>Collaborated with cross-functional teams on new initiatives to achieve organizational goals.</li>
+                    <li>Developed processes, SOPs, and workflows for operating hubs.</li>
+                    <li>Expertise in Sales Tax Detained Vehicle legal procedures (MOV1 to MOV10) and handling Pan India cases, including expired e-way bills and North region scrap sales (Delhi, UP, Uttarakhand, Haryana, Rajasthan).</li>
+                </ul><br>
+                
+                <p><strong>Achievements</strong></p>
+                <ul>
+                    <li>Increased HUB SLA performance by 10% in FY 23-24.</li>
+                    <li>Improved vehicle release performance by 15% in FY 23-24.</li>
+                    <li>Reduced shipment time by 16% in FY 23-24.</li>
+                    <li>Cut costs by 10% by shifting from manual to online processes.</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <span></span>
+                <h3>Delhivery Limited - Executive (Nov 2021 - Feb 2023)</h3>
+                <ul>
+                    <li>Overseeing Hub Operations Management.</li>
+                    <li>Enhancing customer satisfaction and turnaround times for mid-mile FICO documentation.</li>
+                    <li>Optimizing costs through streamlined documentation processes.</li>
+                    <li>Leading cross-functional workshops for high-priority initiatives, such as automating document processes in B2B environments.</li>
+                    <li>Supporting the technical team in developing a digital onboarding platform for documents.</li>
+                    <li>Managing weekly performance reports and team MIS.</li>
+                </ul><br>
+                
+                <p><strong>Achievements:</strong></p>
+                <ul>
+                    <li>Attained a fulfillment rate of 98% for ad-hoc requirements.</li>
+                    <li>Secured a 99% service satisfaction score across various departments.</li>
+                    <li>Successfully built a dedicated team of 10 within a three-month period.</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <span></span>
+                <h3>V-Trans - Management Trainee (Nov 2021 - Nov 2021)</h3>
+                <ul>
+                    <li>Handling Branch Operation (Core Last Mile).</li>
+                    <li>Managed delivery location allocation, GC generation, HUB connection, and last-mile delivery.</li>
+                    <li>Focused on growth, profitability, and maintaining operational service levels.</li>
+                    <li>Prepared weekly branch shipment reports.</li>
+                    <li>Addressed all customer inquiries and handled related queries.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section with Timeline -->
+    <section id="education" class="section">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="entry">
+                <span></span>
+                <h3>Institute of Advance Management and Research - PGDM/MBA in Logistics, Materials, and Supply Chain Management (2019 - 2021)</h3>
+                <ul>
+                <li>Specialized in supply chain management with a focus on logistics and material handling strategies.</li>
+            </ul>
+            </div>
+            <div class="entry">
+                <span></span>
+                <h3>Sawmi Vivekanand Subharti University - Bachelor of Business Administration (2015 - 2019)</h3>
+                <ul>
+                <li>Graduated with a focus on general management and business development practices.</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <span></span>
+                <h3>New English +2 (2013 - 2015)</h3>
+                <ul>
+                <li>12th, Management</li>
+                </ul>
+                </div>
+            <div class="entry">
+                <span></span>
+                <h3>Himali Eng. Sec. Boa. School (2012 - 2013)</h3>
+                <ul>
+                <li>10th</li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <img src="https://cleopatraenterprise.com/wp-content/uploads/2023/04/img-featured_what-is-the-difference-between-cost-control-and-cost-management.jpg" alt="Cost Management">
+                <h3>Cost Management</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://njbmagazine.com/wp-content/uploads/2020/03/ExpandBusiness-775x500.jpg" alt="Business Expansion">
+                <h3>Business Expansion</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://cdn.prod.website-files.com/65e97345914e3cb7eb8ea6f2/66603362b4c14edc61b2ec10_How%20to%20Create%20a%20Profit%20and%20Loss%20Statement%20in%205%20Simple%20Steps.svg" alt="P&L Management">
+                <h3>P&L Management</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://d38cf3wt06n6q6.cloudfront.net/tyasuitefront/webgpcs/images/vendor-management.png" alt="Vendor Management">
+                <h3>Vendor Management</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://images.yourstory.com/cs/1/7d4cde4059f511e9a0b7f5ecf6241dce/workana-branding-freelancers-1579005153234.jpg?mode=crop&crop=faces&ar=16%3A9&format=auto&w=1920&q=75" alt="Team Coordination">
+                <h3>Team Coordination</h3>
+            </div>
+            <div class="skill-card">
+                <img src="https://www.uffizio.com/wp-content/uploads/2023/12/Route-Planning.jpg" alt="Route Planning">
+                <h3>Route Planning</h3>
+            </div>
+        </div>
+    </section>
+
+ <!-- Contact Section -->
+    <section id="contact" class="section c_section">
+        <div class="contact-card">
+            <div class="contact-form">
+                <h2>Contact Me</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            <div class="contact-image">
+                <img src="https://i.pinimg.com/736x/a0/b0/b0/a0b0b0f6b34f192fbb28c4104eb5c5f3.jpg" alt="Contact Image">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Copyright © 2024 Nabin Sah | All Rights Reserved</p>
+            <div class="footer-icons">
+                <a href="https://www.linkedin.com/in/nabin-sah-9b6382166" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:sahnabin937@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/sahnabin937" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/sahnabin937" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/+917479705013" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Animations -->
+    <script>
+        // GSAP Animations for Header
+        gsap.from("header h1", { duration: 1, y: -50, opacity: 0, ease: "power4.out" });
+        gsap.from("header p", { duration: 1, y: -20, opacity: 0, delay: 0.5, ease: "power4.out" });
+        gsap.from("header .footer-icons1", { duration: 1, opacity: 0, scale: 0.8, delay: 1, ease: "power3.out" });
+
+        // Lottie Animation Integration (Ensure the container exists or remove if not used)
+        /*
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'), // the DOM element to render the animation
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_q5pk6p1k.json' // replace this with your own Lottie animation URL
+        });
+        */
+
+        // GSAP for Scroll Animations
+        gsap.from(".profile img", { duration: 1.5, scale: 0.8, opacity: 0, ease: "power3.out" });
+        gsap.from(".profile-info", { duration: 1.5, opacity: 0, x: -50, delay: 0.5, ease: "power3.out" });
+
+        gsap.from("#about", { scrollTrigger: "#about", duration: 1, opacity: 0, y: 50, ease: "power3.out" });
+        gsap.from(".timeline .entry", {
+            scrollTrigger: ".timeline .entry",
+            duration: 1.5,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from("#skills ul li", {
+            scrollTrigger: "#skills ul li",
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from(".contact", { duration: 1, opacity: 0, y: 50, ease: "power3.out", delay: 0.5 });
+    </script>
+
+    <!-- Initialize Particles.js -->
+    <script>
+        /* Particles.js Configuration */
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff" /* White particles */
+                },
+                "shape": {
+                    "type": "circle", /* Shape of particles */
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 4,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse" /* Particle repulsion on hover */
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push" /* Add particles on click */
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
